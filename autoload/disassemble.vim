@@ -24,7 +24,7 @@ func s:ErrorMsg(msg)
 endfunc
 
 " Display the disassembled code for a specified file
-func disassemble#Disassemble(arg)
+func disassemble#Disassemble(cmdmods, arg)
   " Make sure objdump is present in the path
   if !executable(s:objdump)
     call s:ErrorMsg(s:objdump . ' utility is not present')
@@ -74,7 +74,7 @@ func disassemble#Disassemble(arg)
     exe winnr . 'wincmd w'
   else
     " Create a new window
-    exe 'new ' . bname
+    exe a:cmdmods . ' new ' . bname
   endif
   setlocal modifiable
   silent! %d _
@@ -83,7 +83,7 @@ func disassemble#Disassemble(arg)
 
   " create folds
   setlocal foldenable foldcolumn=1
-  g/^\x\+/.+1,/\%(^\x\+\|\%$\)/-1fold
+  g/^\x\+ /.+1,/^$/fold
   normal zR
   normal! gg
 endfunc

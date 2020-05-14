@@ -7,5 +7,10 @@
 " Assumes the objdump utility is present in $PATH
 "
 
+" Needs Vim version 8.0 and higher
+if v:version < 800
+  finish
+endif
+
 " Command to display the disassembled code
-command! -nargs=* -complete=file Disassemble call disassemble#Disassemble(<q-args>)
+command! -nargs=* -complete=file Disassemble call disassemble#Disassemble(<q-mods>, <q-args>)
