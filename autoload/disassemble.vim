@@ -78,7 +78,7 @@ func disassemble#Disassemble(cmdmods, arg)
   endif
   setlocal modifiable
   silent! %d _
-  exe "silent 0r !" . s:objdump . " -l -S -d " . objname
+  exe "silent 0r !" . s:objdump . " -C -l -S --no-show-raw-insn -d " . objname
   setlocal nomodified nomodifiable filetype=asm buftype=nofile bufhidden=wipe
 
   " create folds
