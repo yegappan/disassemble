@@ -82,6 +82,7 @@ func disassemble#Disassemble(cmdmods, arg)
   setlocal nomodified nomodifiable filetype=asm buftype=nofile bufhidden=wipe
 
   " create folds
+  setlocal foldmethod=manual
   setlocal foldenable foldcolumn=1
   g/^\x\+ /.+1,/^$/fold
   normal zR
